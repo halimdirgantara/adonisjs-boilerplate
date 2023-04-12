@@ -17,16 +17,15 @@
 | import './routes/customer'
 |
 */
-
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async () => {
-  return { hello: 'world' }
-})
-Route.get('/login', async () => {
-  return { message: 'Please Login' }
+  return { message: 'Welcome Page' }
 })
 
+Route.post('/register', 'AuthController.register')
+Route.post('/login', 'AuthController.login')
+
 Route.group(() => {
-  Route.get('/user', 'UserController.index')
-}).middleware(['auth'])
+  Route.resource('/user', 'UserController')
+}).middleware('auth')
