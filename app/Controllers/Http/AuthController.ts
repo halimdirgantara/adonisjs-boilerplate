@@ -27,9 +27,10 @@ export default class AuthController {
     })
 
     // Generate a JWT token for the user
-    const token = await auth.use('api').generate(newUser)
+    // const token = await auth.use('api').generate(newUser)
 
-    return { user: newUser, token }
+    // return { user: newUser, token }
+    return { user: newUser }
   }
 
   public async login({ request, auth, response }: HttpContextContract) {

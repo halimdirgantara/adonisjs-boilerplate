@@ -23,9 +23,9 @@ Route.get('/', async () => {
   return { message: 'Welcome Page' }
 })
 
-Route.post('/register', 'AuthController.register')
 Route.post('/login', 'AuthController.login')
 
 Route.group(() => {
+  Route.post('/register', 'AuthController.register')
   Route.resource('/user', 'UserController')
 }).middleware('auth')
