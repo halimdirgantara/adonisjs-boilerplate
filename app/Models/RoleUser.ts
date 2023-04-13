@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, HasOne, column, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import User from './User'
 import Role from './Role'
 
@@ -7,11 +7,17 @@ export default class RoleUser extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @hasOne(() => User)
-  public user: HasOne<typeof User>
+  @column()
+  public userId: number
 
-  @hasOne(() => Role)
-  public role: HasOne<typeof Role>
+  @column()
+  public roleId: number
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
+
+  @belongsTo(() => Role)
+  public role: BelongsTo<typeof Role>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
